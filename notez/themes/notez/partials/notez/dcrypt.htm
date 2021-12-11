@@ -1,0 +1,13 @@
+{% if type == 'image' %}
+<br>
+<img src="{{ dcr|raw }}" style="width:50vh;" class="responsive-img materialboxed">
+<script>
+    $('.materialboxed').materialbox();
+</script>
+{% elseif type == 'audio' %}
+<audio controls>
+    <source src="{{ dcr|raw }}">
+</audio>
+{% else %}
+<p>{{ dcr|raw }}</p>
+{% endif %}

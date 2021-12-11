@@ -1,0 +1,76 @@
+
+{% set acc =  noteZ.getAcc %}
+{% set notez =  noteZ.getNote %}
+{% set aid = '' %}
+{% set cats = '' %}
+{% set not = '' %}
+{% for x in acc %}
+{% if x.userid == uid %}
+{% set aid = x.id %}
+{% set cats = x.cats|dCode %}
+
+
+{% endif %}
+{% endfor %}
+
+<div class="input-field">
+<h5 class="bol">New Note:</h5>
+            <form data-request="onNewNote">
+                <input type="hidden" value="{{ uid }}" name="uid">
+                <input type="hidden" value="{{ aid }}" name="aid">
+                <label for="ncat" class="bol">Select Category:</label>
+ 
+                <div class="input-field col s12">
+                <select name="ncat">
+                    {% for a in cats %}
+
+                    <option value="{{ a.cat }}">{{ a.cat }}</option>
+                    {% endfor %}
+                
+                </select>
+                </div>
+                <div class="input-field col s12 center">
+                    <div class="col s4">
+                        <br>
+                        <button class="btn-large blue" onclick="onTextNote()"><i class="fas fa-pencil-alt"></i></button>
+                    </div>
+                    <div class="col s4">
+                        <br>
+                        <button class="btn-large green" onclick="onAudioNote()"><i class="fas fa-microphone-alt"></i></button>
+                    </div>
+                    <div class="col s4">
+                        <br>
+                        <button class="btn-large amber" onclick="onImageNote()"><i class="fas fa-camera-retro"></i></button>
+                    </div>
+                </div>
+                <div class="input-field col s12" id="rendform">
+
+                </div>
+                <br>
+                <div class="divider"></div>
+                <br>
+                <div class="center">
+                    <br>
+                <button type="submit" class="btn green fnt hidme" id="sbut">Save Note</button>
+                </div>
+                
+            </form>
+</div>
+<script>
+    $('select').formSelect(); 
+    function onTextNote(){
+        event.preventDefault();
+        $.request('onTextNote');
+        $('#sbut').removeClass('hidme');
+    }
+    function onAudioNote(){
+        event.preventDefault();
+        $.request('onAudioNote');
+        $('#sbut').removeClass('hidme');
+    }
+    function onImageNote(){
+        event.preventDefault();
+        $.request('onImageNote');
+        $('#sbut').removeClass('hidme');
+    }
+</script>

@@ -1,0 +1,10 @@
+name: Notez
+form: $/mcrmc/notez/models/note/fields.yaml
+modelClass: Mcrmc\Notez\Models\Note
+defaultRedirect: mcrmc/notez/notez
+create:
+    redirect: 'mcrmc/notez/notez/update/:id'
+    redirectClose: mcrmc/notez/notez
+update:
+    redirect: mcrmc/notez/notez
+    redirectClose: mcrmc/notez/notez

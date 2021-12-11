@@ -1,0 +1,20 @@
+plugin:
+    name: 'mcrmc.notez::lang.plugin.name'
+    description: 'mcrmc.notez::lang.plugin.description'
+    author: Mcrmc
+    icon: oc-icon-pencil
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Notez
+        url: mcrmc/notez/accounts
+        icon: icon-user-secret
+        sideMenu:
+            side-menu-item:
+                label: Accounts
+                url: mcrmc/notez/accounts
+                icon: icon-user-secret
+            side-menu-item2:
+                label: Notez
+                url: mcrmc/notez/notez
+                icon: icon-pencil

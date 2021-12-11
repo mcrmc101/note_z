@@ -1,0 +1,47 @@
+title = "Notez"
+url = "/notez"
+layout = "notelay"
+is_hidden = 0
+
+[noteZ]
+==
+
+{% set acc =  noteZ.getAcc %}
+{% set notez =  noteZ.getNote %}
+{% set aid = '' %}
+{% set cats = '' %}
+{% set not = '' %}
+{% set haspass = '' %}
+{% for x in acc %}
+{% if x.userid == user.id %}
+{% set aid = x.id %}
+{% set cats = x.cats|dCode %}
+{% set haspass = x.haspass %}
+
+
+{% endif %}
+{% endfor %}
+
+
+<div class="container mcrmcc">
+    {% if haspass == 0 %}
+        <div style="height: 10vh"></div>
+    <div class="row center">
+        <form data-request="onSetPass">
+            <h3>Set Your Password:</h3>
+ 
+        <input type="hidden" value="{{ aid }}" name="aid">
+        <input type="password" name="pwd" placeholder="Set Password" required>
+        <button type="submit" class="btn green">Save Password</button>
+           <h6>And don't forget it!</h6>
+        </form>
+    </div>
+    {% else %}
+    <div class="row">
+    <div id="notediv"></div>
+    </div>
+    <script>
+        $.request('onRenderHolder');
+    </script>
+    {% endif %}
+</div>

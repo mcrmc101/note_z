@@ -1,0 +1,21 @@
+{% set acc =  noteZ.getAcc %}
+{% set aid = '' %}
+{% for x in acc %}
+{% if x.userid == uid %}
+{% set aid = x.id %}
+{% set cats = x.cats|dCode %}
+{% endif %}
+{% endfor %}
+
+<h5>New Category</h5>
+            <form data-request="onNewCat">
+                <div class="input-field col s12">
+                <p>Category Name</p>
+                
+                <input type="hidden" value="{{ aid }}" name="aid">
+                <input type="text" name="catname" placeholder="Category Name">
+                </div>
+                <div class="input-field col s12 center">
+                <button type="submit" class="btn green fnt">Save Category</button>
+                </div>
+</form>

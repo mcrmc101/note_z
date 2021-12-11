@@ -1,0 +1,39 @@
+title = "Login"
+url = "/login"
+layout = "loglay"
+is_hidden = 0
+
+[noteZ]
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<style>
+    
+</style>
+{% if not user %}
+<div class="container bol">
+    <div class="row">
+
+        <div class="col s12 m6">
+            <h3>Sign in</h3>
+            {% partial account ~ '::signin' %}
+        </div>
+
+        <div class="col s12 m6">
+            {% partial account ~ '::register' %}
+        </div>
+
+    </div>
+
+{% else %}
+    <div class="container bol">
+
+    {% partial account ~ '::activation_check' %}
+
+    {% partial account ~ '::update' %}
+
+    {% partial account ~ '::deactivate_link' %}
+    </div>
+{% endif %}

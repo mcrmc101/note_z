@@ -1,0 +1,78 @@
+title = "Note"
+url = "/note/:id?"
+layout = "notelay"
+is_hidden = 0
+
+[noteZ]
+
+[builderDetails]
+modelClass = "Mcrmc\Notez\Models\Note"
+identifierValue = "{{ :id }}"
+modelKeyColumn = "id"
+displayColumn = "id"
+notFoundMessage = "Record not found"
+
+[session]
+security = "user"
+redirect = "login"
+==
+{% component 'session' %}
+
+{% set record = builderDetails.record %}
+{% set displayColumn = builderDetails.displayColumn %}
+{% set notFoundMessage = builderDetails.notFoundMessage %}
+
+{% if record %}
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6">
+           
+            <h2 class="bol">{{ record.created_at|date('d M Y H:i') }}</h2>
+        </div>
+        <div class="col s12 m6">
+            <h3 class="bol">Category: {{ record.cat }}</h3>
+            <h4 class="bol">Type: {% if record.type == 'image' %}Image{% elseif record.type == 'audio' %}Audio{% else %}Text{% endif %}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <form data-request="onDcryptNote" data-request-success="emptyold();">
+            <input type="hidden" value="{{ record.accid }}" name="aid">
+            <input type="hidden" value="{{ record.id }}" name="nid">
+            <button type="submit" class="btn amber black-text"><i class="fas fa-key"></i></button>
+            </form>
+            <div id="ediv"><p style="word-wrap: break-word;">{{ record.notez }}</p></div>
+            <div id="ddiv"></div>
+        </div>
+    </div>
+    <div style="height: 2.5vh"></div>
+    <div class="divider"></div>
+    <div style="height: 2.5vh"></div>
+    <div class="row center">
+        <div class="col s6">
+        <a href="{{ 'notez'|page }}"><button class="btn green fnt">Back</button></a>
+        </div>
+        <div class="col s6">
+            <form data-request="onDeleteNote" data-request-confirm="Delete Note?">
+            <input type="hidden" name="nid" value="{{ record.id }}">
+            <button type="submit" class="btn red"><i class="fas fa-times-circle"></i></button>
+        </form>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+function emptyold(){
+    $('#ediv').empty();
+}
+</script>
+
+
+{% else %}
+<script>
+window.location.replace("{{ 'notez'|page }}");
+
+</script>
+{% endif %}

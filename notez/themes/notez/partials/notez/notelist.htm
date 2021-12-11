@@ -1,0 +1,53 @@
+{% set acc =  noteZ.getAcc %}
+{% set notez =  noteZ.getNote %}
+{% set aid = '' %}
+{% set cats = '' %}
+{% set not = '' %}
+{% for x in acc %}
+{% if x.userid == uid %}
+{% set aid = x.id %}
+{% set cats = x.cats|dCode %}
+
+
+{% endif %}
+{% endfor %}
+
+<div class="input-field">
+    <table id="notelist" class="responsive compact display">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Date:</th>
+                <th>Category</th>
+                <th>Type</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for q in notez %}
+            {% if q.userid == uid %}
+            <tr>
+                <td><a href="note/{{ q.id }}" class="btn-small green fnt"><i class="far fa-eye"></i></a></td>
+                <td>{{ q.created_at|date('d M Y H:i') }}</td>
+                <td>{{ q.cat }}</td>
+                <td>{% if q.type == 'image' %}Image{% elseif q.type == 'audio' %}Audio{% else %}Text{% endif %}</td>
+                <td>
+                <form data-request="onDeleteNote" data-request-confirm="Delete Note?">
+                    <input type="hidden" value="{{ q.id }}" name="nid">
+                    <button type="submit" class="btn-small red"><i class="fas fa-times-circle"></i></button>
+                    </form>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+$('#notelist').DataTable({
+    "columnDefs": [
+            { "type": "date", "targets": 1 }
+        ],
+        "order": [[ 1, 'desc' ]],
+});
+</script>

@@ -1,0 +1,98 @@
+[session]
+security = "all"
+redirect = "login"
+==
+<!DOCTYPE html>
+<html style="font-size: 15px;">
+    <head>
+ 
+        
+        <meta charset="utf-8">
+        <!--<title>Messenger Co - {{ this.page.title }}</title>-->
+        
+       
+        
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="mcrmc">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="generator" content="OctoberCMS">
+        
+        <link rel="icon" href="{{ 'favicon.ico'|media }}" />
+
+        <link href="{{ 'assets/css/materialize.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/css/all.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/DataTables/datatables.css'|theme }}" rel="stylesheet">
+        <link href="{{ 'assets/css/style.css'|theme }}" rel="stylesheet">
+        {% styles %}
+        <script src="{{ 'assets/js/jquery.js'|theme }}"></script>
+        <script src="{{ 'assets/js/materialize.js'|theme }}"></script>
+        <script src="{{ 'assets/DataTables/datatables.js'|theme }}"></script>
+        
+        <script src="{{ 'assets/js/script.js'|theme }}"></script>
+        
+
+
+
+       
+        {% framework extras %}
+        {% scripts %}
+
+
+
+    </head>
+    <body style="font-size: 16px; background-color: whitesmoke;font-family: 'Tahoma', monospace;">
+  
+        
+        <!-- Header -->
+        <header id="layout-header">
+           
+            {% partial 'head' %}
+           
+        </header>
+
+        <!-- Content -->
+        <main>
+     
+        <section id="layout-content">
+          
+{% flash %}
+    <p
+        data-control="flash-message"
+        class="fade {{ type }}"
+        data-interval="3">
+        {{ message }}
+    </p>
+{% endflash %}    
+            
+            
+            {% page %}
+                
+                
+                
+             
+        <div style="height: 5vh;"></div>
+        </section>
+        </main>
+        <!-- Footer -->
+        <footer id="layout-footer">
+            
+            {% partial 'foot' %}
+            
+        </footer>    
+    </body>
+</html>
+
+
+
+<!--<script>
+    $(window).on('ajaxErrorMessage', function(event, message){
+
+        
+
+        // This will stop the default alert() message
+        event.preventDefault();
+        console.log(message);
+
+    })
+</script>-->

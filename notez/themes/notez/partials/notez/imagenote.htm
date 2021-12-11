@@ -1,0 +1,56 @@
+<div class="col s12">
+    <img id="imgitemed1" width="95%" alt="Item Image" class="mpt hidme">
+    <div class="file-field input-field">
+        <div class="btn amber">
+          <span>Image</span>
+          <input type="file" accept="image/*" capture accept="image/jpeg,image/x-png" onchange="resizeItemed1()" id="itemimageed1">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
+      </div>
+      <input id="b64itemed1" name="note" type="hidden" class="mpt">
+      <input type="hidden" name="type" value="image">
+</div>
+<script>
+    function resizeItemed1(){
+  //define the width to resize e.g 600px
+  var resize_width = 400;//without px
+  //get the image selected
+  var item = document.querySelector('#itemimageed1').files[0];
+  //create a FileReader
+  var reader = new FileReader();
+  //image turned to base64-encoded Data URI.
+  reader.readAsDataURL(item);
+  reader.name = item.name;//get the image's name
+  reader.size = item.size; //get the image's size
+  reader.onload = function(event) {
+    var img = new Image();//create a image
+    img.src = event.target.result;//result is base64-encoded Data URI
+    img.name = event.target.name;//set name (optional)
+    img.size = event.target.size;//set size (optional)
+    img.onload = function(el) {
+      var elem = document.createElement('canvas');//create a canvas
+      //scale the image to 600 (width) and keep aspect ratio
+      var scaleFactor = resize_width / el.target.width;
+      elem.width = resize_width;
+      elem.height = el.target.height * scaleFactor;
+      //draw in canvas
+      var ctx = elem.getContext('2d');
+      ctx.drawImage(el.target, 0, 0, elem.width, elem.height);
+      //get the base64-encoded Data URI from the resize image
+      var srcEncoded = ctx.canvas.toDataURL(el.target, 'image/jpeg', 0);
+      //assign it to thumb src
+      document.querySelector('#imgitemed1').src = srcEncoded;
+    $('#b64itemed1').val(srcEncoded);
+
+      if($('#imgitemed1').hasClass('hidme')){
+          $('#imgitemed1').removeClass('hidme');
+      }
+      /*Now you can send "srcEncoded" to the server and
+      convert it to a png o jpg. Also can send
+      "el.target.name" that is the file's name.*/
+    }
+  }
+}
+</script>

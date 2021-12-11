@@ -1,0 +1,4 @@
+title: Accounts
+modelClass: Mcrmc\Notez\Models\Account
+toolbar:
+    buttons: reorder_toolbar

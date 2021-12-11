@@ -1,0 +1,10 @@
+name: Accounts
+form: $/mcrmc/notez/models/account/fields.yaml
+modelClass: Mcrmc\Notez\Models\Account
+defaultRedirect: mcrmc/notez/accounts
+create:
+    redirect: 'mcrmc/notez/accounts/update/:id'
+    redirectClose: mcrmc/notez/accounts
+update:
+    redirect: mcrmc/notez/accounts
+    redirectClose: mcrmc/notez/accounts

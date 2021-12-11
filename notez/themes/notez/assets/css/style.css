@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+.fnt{
+    font-family: 'Press Start 2P', cursive;
+}
+
+.bol {
+    font-weight: bold;
+}
+
+*{
+    font-family:'Courier New', Courier, monospace;
+}
+
+.hidme {
+    display: none;
+}
+
+.mcrmca {
+    padding: 5%;
+    margin: 2%;
+    background-color: rgba(20,20,20,0.2)
+}
+
+.mcrmcc {
+    padding: 4%;
+    
+    border-radius: 15px;
+    background-color: rgba(240,240,240,0.9);
+}
+
+.row {
+    margin: 3px;
+    padding: 0px;
+}
+
+h1{
+    font-size: 1.8em;
+}
+h2{
+    font-size: 1.6em;
+}
+h3{
+    font-size: 1.4em;
+}
+h4{
+    font-size: 1.2em;
+}
+h5{
+    font-size: 1.1em;
+}
+h6{
+    font-size: 1.05em;
+}
+
+
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }

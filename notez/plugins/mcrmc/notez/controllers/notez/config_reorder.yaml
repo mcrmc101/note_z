@@ -1,0 +1,4 @@
+title: Notez
+modelClass: Mcrmc\Notez\Models\Note
+toolbar:
+    buttons: reorder_toolbar

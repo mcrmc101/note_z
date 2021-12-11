@@ -1,0 +1,87 @@
+
+<style>
+    #navb{
+        transition: top 0.3s; /* Transition effect when sliding down (and up) */
+    }
+</style>
+<div class="navbar-fixed">
+<nav id="navb">
+    <div class="nav-wrapper" style="background-color: #ffe500;">
+    <div class="container" style="width: 90%">
+      <a href="{{ 'notez'|page }}" class="black-text left fnt"><i class="fas fa-user-secret"></i> Notez</a>
+     
+       <a href="#" data-target="mobile-demo" class="sidenav-trigger right black-text"><i class="fas fa-bars"></i></a>
+       
+      
+     <!-- <ul class="right hide-on-med-and-down">
+          
+          <li><a href="{{ 'login'|page }}" class="black-text" style="font-size: 1.5em">Login</a></li>
+
+      </ul>-->
+    </div>
+    </div>
+  </nav>
+</div>
+{% if this.page.title == 'Home' %}
+  <ul class="sidenav center sidenav-close" id="mobile-demo">
+      <li><br></li>
+      <li><i class="fas fa-user-secret" style="font-size: 2em;"></i></li>
+      <li><h3 class="fnt">Notez</h3></li>
+      <li><div class="divider"></div></li>
+      {% if user %}
+     <li><a href="{{ 'notez'|page }}" class="black-text btn-flat">Notez</a></li>
+    
+
+      <li><a data-request="onLogout" data-request-data="redirect: '/'" data-request-confirm="Log Out?" class="btn-flat red-text">Logout</a></li>
+      {% else %}
+      <li><a href="{{ 'login'|page }}" class="green-text btn-flat">LogIn</a></li>
+      {% endif %}
+
+      
+ 
+  </ul>
+  {% else %}
+    <ul class="sidenav center sidenav-close" id="mobile-demo">
+      <li><br></li>
+      <li><i class="fas fa-user-secret" style="font-size: 2em;"></i></li>
+      <li><h3 class="fnt">Notez</h3></li>
+      <li><div class="divider"></div></li>
+      {% if user %}
+      <li><form data-request="onRenderNoteForm">
+                <input type="hidden" name="uid" value="{{ user.id }}">
+            <button type="submit" class="btn-flat">Add Note</button>
+            </form></li>
+ 
+    <li><form data-request="onRenderNoteList">
+                <input type="hidden" name="uid" value="{{ user.id }}">   
+            <button type="submit" class="btn-flat">View Notes</button>
+            </form></li>
+              <li><form data-request="onRenderCatForm">
+            <input type="hidden" name="uid" value="{{ user.id }}">
+        <button type="submit" class="btn-flat">Add Category</button>
+            </form></li>
+    
+
+      <li><a data-request="onLogout" data-request-data="redirect: '/'" data-request-confirm="Log Out?" class="btn-flat fnt red-text">Logout</a></li>
+      {% else %}
+      <li><a href="{{ 'login'|page }}" class="green-text btn-flat fnt">LogIn</a></li>
+      {% endif %}
+
+      
+ 
+  </ul>
+  {% endif %}
+<br>
+<script>
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("navb").style.top = "0";
+  } else {
+    document.getElementById("navb").style.top = "-50px";
+  }
+  prevScrollpos = currentScrollPos;
+} 
+</script>
+

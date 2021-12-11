@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Route Control
+
+# Model Form Field configuration
+form: $/mcrmc/notez/models/routecontrol/fields.yaml
+
+# Model Class name
+modelClass: Mcrmc\Notez\Models\RouteControl
+
+# Default redirect location
+defaultRedirect: mcrmc/notez/routecontrol
+
+# Create page
+create:
+    title: Create Route Control
+    redirect: mcrmc/notez/routecontrol/update/:id
+    redirectClose: mcrmc/notez/routecontrol
+
+# Update page
+update:
+    title: Edit Route Control
+    redirect: mcrmc/notez/routecontrol
+    redirectClose: mcrmc/notez/routecontrol
+
+# Preview page
+preview:
+    title: Preview Route Control

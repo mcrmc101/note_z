@@ -1,0 +1,17 @@
+title = "Home"
+url = "/"
+layout = "loglay"
+is_hidden = 0
+
+[noteZ]
+==
+{% if user %}
+<script>
+    $.request('onGoNotez');
+   
+</script>
+{% else %}
+<script>
+    $.request('onGoLogin');
+</script>
+{% endif %}
