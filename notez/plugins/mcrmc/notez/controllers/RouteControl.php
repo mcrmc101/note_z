@@ -9,6 +9,11 @@ use ValidationException;
 use Input;
 use Auth;
 use JWTAuth;
+use Event;
+use DateTime;
+use Mail;
+use Mcrmc\Notez\Models\Note;
+use Mcrmc\Notez\Models\Account;
 
 /**
  * Route Control Back-end Controller
@@ -100,8 +105,38 @@ class RouteControl extends Controller
         return response()->json(compact('user'));
     }
 
+    //TODO!!!
+        public function getAuthenticatedAccount()
+    {
+        try {
+
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        // the token is valid and we have found the user via the sub claim
+        return response()->json(compact('user'));
+    }
+
+    //Get Notes function quick
     public function getNotes(){
         $user = JWTAuth::parseToken()->authenticate();
-        return $user;
+        $acc = Account::where('userid',$user->id); 
+        $notes = Note::where('userid',$user->id)->where('accid',$acc->id);
+        return $notes;
     }
 }
