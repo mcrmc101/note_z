@@ -133,10 +133,35 @@ class RouteControl extends Controller
     }
 
     //Get Notes function quick
-    public function getNotes(){
+    public function getNotez(){
         $user = JWTAuth::parseToken()->authenticate();
-        $acc = Account::where('userid',$user->id); 
-        $notes = Note::where('userid',$user->id)->where('accid',$acc->id);
-        return $notes;
+        //TODO!!!
+       // $acc = Account::where('userid',$user->id); 
+        $notes = Note::select('id','cat','type')->where('userid','=',$user->id)->get();
+        return json_encode($notes);
+    }
+
+    public function getSelectedNote(Request $req){
+
+            $user = JWTAuth::parseToken()->authenticate();
+        
+        $nid = $req->noteid;
+        $note = Note::select('created_at','cat','notez','type','updated_at','accid')->where('id','=',$nid);
+        $acc = Account::find($note->accid);
+        //decrypting
+        $note = Note::find($nid);
+        $ciphering = "AES-128-CTR";
+        $encryption = $note->notez;
+        $iv_length = openssl_cipher_iv_length($ciphering); 
+        $options = 0;
+        $decryption_iv = '1234567891011121'; 
+        $encryption_iv = '1234567891011121';
+// Store the decryption key 
+        $decryption_key = $acc->pword;
+        
+        $decryption = openssl_decrypt ($encryption, $ciphering, 
+        $decryption_key, $options, $encryption_iv);
+        $note->notez = $decryption;
+        return json_encode($note);
     }
 }

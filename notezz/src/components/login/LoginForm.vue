@@ -58,6 +58,7 @@ export default {
             status: 'success',
             title: 'Logged In'
           })
+          this.$router.push({ path: 'note_z' });
         })
         .catch((error) => {
           console.log(error)

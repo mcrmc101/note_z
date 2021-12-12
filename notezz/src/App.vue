@@ -4,6 +4,7 @@
       <router-link to="/">Login</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <FlashMessage></FlashMessage>
     <router-view />
   </div>
 </template>
