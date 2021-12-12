@@ -46,7 +46,25 @@ export default {
         email: this.email,
         password: this.password
       }
-      axios.get('http://localhost/note_z/notez/api/login', data)
+      axios.post('http://localhost/note_z/notez/api/login', data)
+        .then((response) => {
+          console.log(response)
+          this.$store.commit('settoken', response.data.token)
+          this.flashMessage.show({
+            status: 'success',
+            title: 'Logged In'
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    },
+    checkUser: function () {
+      axios.get('http://localhost/note_jizz/notez/checkUser', {
+        headers: {
+          Authorization: `Bearer ${this.$store.state.usertoken}`
+        }
+      })
         .then((response) => {
           console.log(response)
         })

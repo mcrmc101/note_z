@@ -70,7 +70,7 @@ return [
     'settings' => [
         'users' => 'Users',
         'menu_label' => 'User settings',
-        'menu_description' => 'Manage user based settings.',
+        'menu_description' => 'Manage user authentication, registration and activation settings.',
         'activation_tab' => 'Activation',
         'signin_tab' => 'Sign in',
         'registration_tab' => 'Registration',
@@ -130,6 +130,7 @@ return [
         'details' => 'Details',
         'account' => 'Account',
         'block_mail' => 'Block all outgoing mail sent to this user.',
+        'status_label' => 'Status',
         'status_guest' => 'Guest',
         'status_activated' => 'Activated',
         'status_registered' => 'Registered',

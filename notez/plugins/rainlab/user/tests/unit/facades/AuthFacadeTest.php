@@ -59,7 +59,7 @@ class AuthFacadeTest extends UserPluginTestCase
 
     public function testLoginAndCheckingAuthentication()
     {
-        // we should not be authenticated 
+        // we should not be authenticated
         $this->assertFalse(Auth::check());
 
         // create a user

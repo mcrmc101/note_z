@@ -1,6 +1,6 @@
 # Front-end user plugin
 
-[![Build Status](https://img.shields.io/travis/rainlab/user-plugin.svg?branch=master)](https://travis-ci.org/rainlab/user-plugin)
+[![Build Status](https://img.shields.io/github/workflow/status/rainlab/user-plugin/Tests)](https://github.com/rainlab/user-plugin/actions)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rainlab/user-plugin/blob/master/LICENCE.md)
 
 Front-end user management for October CMS.
@@ -47,7 +47,17 @@ As a security precaution, you may restrict users from having sessions across mul
 
 #### Notifications
 
-When a user is first activated -- either by registration, email confirmation or administrator approval -- they are sent a welcome email. To disable the welcome email, select "Do not send a notification" from the **Welcome mail template** dropdown. The default message template used is `rainlab.user::mail.welcome` and you can customize this by selecting **Mail > Mail Templates** from the settings menu.
+This feature is implemented by the Notify plugin. How to use this feature:
+
+- Install the **RainLab.Notify** plugin
+- Navigate to **Settings > Notification** rules
+- Click **New notification rule**
+- Select **User > Activated**
+- Click **Add action**
+- Select **Compose a mail message**
+- Select **User email address** for the **Send to** field
+- Here you may select the Mail template previously defined in the user settings.
+- Click **Save**
 
 ## Extended features
 
