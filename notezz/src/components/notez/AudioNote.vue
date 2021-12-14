@@ -70,7 +70,7 @@ export default {
             status: 'error',
             title: 'Not Authorized!'
           })
-          //this.$router.push({ path: 'login' });
+          this.$router.push({ path: 'login' });
         })
 
     }
