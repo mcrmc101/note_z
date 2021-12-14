@@ -1,21 +1,28 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!--<div id="nav">
       <router-link to="/">Login</router-link> |
       <router-link to="/note_z">All Notes</router-link> |
       <router-link to="/new_note">New Note</router-link>
-    </div>
+    </div>-->
+    <n-bar></n-bar>
+    <br>
     <FlashMessage></FlashMessage>
     <b-container>
       <router-view />
     </b-container>
   </div>
 </template>
+<script>
+import NBar from './components/NBar.vue'
+export default {
+  components: { NBar }
+}
+</script>
 
 <style>
 * {
-  background-color: ghostwhite;
-  color: black;
+  font-weight: bold;
 }
 b-row {
   padding: 2%;
@@ -24,7 +31,6 @@ b-row {
   font-family: "Courier New", Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 
 #nav {
