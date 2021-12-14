@@ -141,15 +141,17 @@ class RouteControl extends Controller
         return json_encode($notes);
     }
 
+    //get single note and decrypt
+
     public function getSelectedNote(Request $req){
 
-            $user = JWTAuth::parseToken()->authenticate();
+        $user = JWTAuth::parseToken()->authenticate();
         
         $nid = $req->noteid;
-        $note = Note::select('created_at','cat','notez','type','updated_at','accid')->where('id','=',$nid);
+        $note = Note::find($nid);
         $acc = Account::find($note->accid);
         //decrypting
-        $note = Note::find($nid);
+        
         $ciphering = "AES-128-CTR";
         $encryption = $note->notez;
         $iv_length = openssl_cipher_iv_length($ciphering); 
@@ -161,7 +163,57 @@ class RouteControl extends Controller
         
         $decryption = openssl_decrypt ($encryption, $ciphering, 
         $decryption_key, $options, $encryption_iv);
-        $note->notez = $decryption;
-        return json_encode($note);
+        $narr = [
+            'Category' => $note->cat,
+            'Type' => $note->type,
+            'Note' => $decryption
+        ];
+        //add unescaping
+        return $narr;
+    }
+
+    //get acc number for user
+    //not used
+    public function getAcc(){
+        $user = JWTAuth::parseToken()->authenticate();
+        $acc = Account::where('userid','=',$user->id)->first();
+        return $acc->id;
+    }
+
+    //get categories
+    public function getCats(){
+        $user = JWTAuth::parseToken()->authenticate();
+        $acc = Account::where('userid','=',$user->id)->first();
+        return $acc->cats;
+    }
+
+    public function testSave(Request $req){
+        return $req;
+    }
+
+    public function saveNote(Request $req){
+        $user = JWTAuth::parseToken()->authenticate();
+        $acc = Account::where('userid','=',$user->id)->first();
+        $accid = $acc->id;
+        $note = new Note();
+       
+
+        $ciphering = "AES-128-CTR";
+        $iv_length = openssl_cipher_iv_length($ciphering); 
+        $options = 0; 
+        //change for production
+        $encryption_iv = '1234567891011121';
+        //
+        $encryption_key = $acc->pword;
+        //add Escaping
+        $encryption = openssl_encrypt($req->note, $ciphering, 
+        $encryption_key, $options, $encryption_iv);
+        $note->notez = $encryption;
+        $note->userid = $user->id;
+        $note->accid = $accid;
+        $note->type = $req->type;
+        $note->cat = $req->cat;
+        $note->save();
+        return 'Saved';
     }
 }

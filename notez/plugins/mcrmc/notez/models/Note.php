@@ -24,4 +24,9 @@ class Note extends Model
      */
     public $rules = [
     ];
+
+    public $attachMany = [
+    'notefile' => 'System\Models\File'
+    ];
+
 }

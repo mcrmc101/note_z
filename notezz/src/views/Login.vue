@@ -1,6 +1,9 @@
 <template>
   <b-container>
-    <b-row>
+    <b-row
+      align-h="center"
+      align-v="center"
+    >
       <b-card>
         <login-form></login-form>
       </b-card>

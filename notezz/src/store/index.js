@@ -16,11 +16,28 @@ export default new Vuex.Store({
     }
   })],
   state: {
-    usertoken: ''
+    usertoken: '',
+    isuser: false,
+    hascats: 0,
+    cats: '',
+    file: null,
+    selectedCat: ''
   },
   mutations: {
     settoken (state, token) {
       state.usertoken = token
+    },
+    sethascats (state, hascat) {
+      state.hascats = hascat
+    },
+    setcats (state, cats) {
+      state.cats = cats
+    },
+    setfile (state, file) {
+      state.file = file
+    },
+    setSelectedCat (state, cat) {
+      state.selectedCat = cat
     }
   },
   actions: {

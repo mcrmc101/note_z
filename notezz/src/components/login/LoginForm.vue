@@ -62,6 +62,10 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+          this.flashMessage.show({
+            status: 'error',
+            title: 'Email or Password are incorrect'
+          })
         })
     },
     checkUser: function () {

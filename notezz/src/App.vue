@@ -2,7 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Login</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/note_z">All Notes</router-link> |
+      <router-link to="/new_note">New Note</router-link>
     </div>
     <FlashMessage></FlashMessage>
     <router-view />

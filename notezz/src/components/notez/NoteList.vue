@@ -1,25 +1,35 @@
 <template>
   <div>
-    <b-row>
-      <b-col sm>
-        <b-card
-          v-if="hasSelectedNote"
-          :title="selectedNote[0].cat"
-        >
+    <b-row align-h="center">
 
-        </b-card>
-      </b-col>
-      <b-col sm>
-        <b-table
-          striped
-          hover
-          sticky-header
-          :items="items"
-          selectable
-          @row-selected="getSelected($event)"
-          select-mode="single"
-        ></b-table>
-      </b-col>
+      <b-card v-if="hasSelectedNote">
+        <h4>{{selectedNote.Category}}</h4>
+        <b-img
+          v-if="isImage"
+          :src="selectedNote.Note"
+          fluid
+        ></b-img>
+        <audio
+          v-if="isAudio"
+          :src="selectedNote.Note"
+          controls
+        ></audio>
+
+        <b-card-text v-if="isText">{{ selectedNote.Note }}</b-card-text>
+        <br>
+      </b-card>
+    </b-row>
+    <b-row align-h="center">
+      <b-table
+        hover
+        sticky-header
+        :items="items"
+        selectable
+        @row-selected="getSelected($event)"
+        select-mode="single"
+        style="width:100%"
+      ></b-table>
+
     </b-row>
   </div>
 </template>
@@ -33,7 +43,9 @@ export default {
       items: this.notez,
       selectedNote: '',
       hasSelectedNote: false,
-      dcodedNote: ''
+      isImage: false,
+      isAudio: false,
+      isText: true
     }
   },
   methods: {
@@ -49,6 +61,21 @@ export default {
         .then((response) => {
           console.log(response.data)
           this.selectedNote = response.data
+          if (response.data.Type === 'image') {
+            this.isImage = true
+            this.isText = false
+            this.isAudio = false
+          }
+          else if (response.data.Type === 'audio') {
+            this.isImage = false
+            this.isText = false
+            this.isAudio = true
+          }
+          else {
+            this.isImage = false
+            this.isText = true
+            this.isAudio = false
+          }
           this.hasSelectedNote = true
         })
         .catch((error) => {
