@@ -2,12 +2,16 @@
   <div>
     <b-row align-h="center">
 
-      <b-card v-if="hasSelectedNote">
-        <h4>{{selectedNote.Category}}</h4>
+      <b-card
+        v-if="hasSelectedNote"
+        bg-variant="light"
+        :header="selectedNote.Category"
+      >
+
         <b-img
           v-if="isImage"
           :src="selectedNote.Note"
-          fluid
+          style="max-height:50vh"
         ></b-img>
         <audio
           v-if="isAudio"
@@ -19,15 +23,18 @@
         <br>
       </b-card>
     </b-row>
+    <br>
     <b-row align-h="center">
       <b-table
         hover
         sticky-header
+        small
+        bordered
         :items="items"
         selectable
         @row-selected="getSelected($event)"
         select-mode="single"
-        style="width:100%"
+        style="width:90%"
       ></b-table>
 
     </b-row>

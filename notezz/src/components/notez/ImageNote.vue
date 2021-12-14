@@ -62,7 +62,11 @@ export default {
       })
         .then((response) => {
           console.log(response.data)
-
+          this.flashMessage.show({
+            status: 'success',
+            title: 'Note Saved!'
+          })
+          this.$router.push({ path: 'note_z' });
         })
         .catch((error) => {
           console.log(error)

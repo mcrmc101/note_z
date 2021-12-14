@@ -6,17 +6,25 @@
       <router-link to="/new_note">New Note</router-link>
     </div>
     <FlashMessage></FlashMessage>
-    <router-view />
+    <b-container>
+      <router-view />
+    </b-container>
   </div>
 </template>
 
 <style>
+* {
+  background-color: ghostwhite;
+  color: black;
+}
+b-row {
+  padding: 2%;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Courier New", Courier, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 
 #nav {

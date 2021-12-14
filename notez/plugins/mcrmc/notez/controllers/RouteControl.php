@@ -137,7 +137,7 @@ class RouteControl extends Controller
         $user = JWTAuth::parseToken()->authenticate();
         //TODO!!!
        // $acc = Account::where('userid',$user->id); 
-        $notes = Note::select('id','cat','type')->where('userid','=',$user->id)->get();
+        $notes = Note::select('created_at','id','cat','type')->where('userid','=',$user->id)->get();
         return json_encode($notes);
     }
 

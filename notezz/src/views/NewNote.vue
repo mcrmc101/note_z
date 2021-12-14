@@ -5,24 +5,16 @@
         align-h="center"
         align-v="center"
       >
-        <b-col>
-          <b-button
-            variant="warning"
-            @click.prevent="selectAudioNote()"
-          >Audio</b-button>
-        </b-col>
-        <b-col>
-          <b-button
-            variant="warning"
-            @click.prevent="selectImageNote()"
-          >Image</b-button>
-        </b-col>
-        <b-col>
-          <b-button
-            variant="warning"
-            @click.prevent="selectTextNote()"
-          >Text</b-button>
-        </b-col>
+        <b-dropdown
+          size="md"
+          text="Select Type"
+          class="m-2"
+        >
+          <b-dropdown-item-button @click.prevent="selectTextNote()">Text</b-dropdown-item-button>
+          <b-dropdown-item-button @click.prevent="selectImageNote()">Image</b-dropdown-item-button>
+          <b-dropdown-item-button @click.prevent="selectAudioNote()">Audio</b-dropdown-item-button>
+
+        </b-dropdown>
       </b-row>
       <br>
       <b-row

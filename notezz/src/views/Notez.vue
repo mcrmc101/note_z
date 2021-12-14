@@ -1,13 +1,10 @@
 <template>
   <div>
-    <b-container>
-
-      <note-list
-        :notez="notez"
-        v-if="hasnotez"
-      ></note-list>
-      <h3 v-else>No Notes Yet</h3>
-    </b-container>
+    <note-list
+      :notez="notez"
+      v-if="hasnotez"
+    ></note-list>
+    <h3 v-else>No Notes Yet</h3>
   </div>
 </template>
 <script>
