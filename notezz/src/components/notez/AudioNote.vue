@@ -1,28 +1,30 @@
 <template>
   <div>
-    <b-form
-      @submit.prevent="saveAudioNote($event)"
-      enctype="multipart/form-data"
-    >
-      <b-form-group>
-        <select-category></select-category>
-      </b-form-group>
-      <b-form-group>
-        <b-form-file
-          accept="audio/*"
-          capture
-          placeholder="Add Audio Note"
-          drop-placeholder="Drop file here..."
-          @change="handleFileUpload"
-        ></b-form-file>
-      </b-form-group>
-      <b-form-group>
-        <b-button
-          type="submit"
-          variant="success"
-        >Save</b-button>
-      </b-form-group>
-    </b-form>
+    <b-card title="Add Audio Note">
+      <b-form
+        @submit.prevent="saveAudioNote($event)"
+        enctype="multipart/form-data"
+      >
+        <b-form-group>
+          <select-category></select-category>
+        </b-form-group>
+        <b-form-group>
+          <b-form-file
+            accept="audio/*"
+            capture
+            placeholder="Add Audio Note"
+            drop-placeholder="Drop file here..."
+            @change="handleFileUpload"
+          ></b-form-file>
+        </b-form-group>
+        <b-form-group>
+          <b-button
+            type="submit"
+            variant="success"
+          >Save</b-button>
+        </b-form-group>
+      </b-form>
+    </b-card>
   </div>
 </template>
 <script>

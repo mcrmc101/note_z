@@ -33,6 +33,11 @@ export default {
       .catch((error) => {
         console.log(error)
         this.hasnotez = false
+        this.flashMessage.show({
+          status: 'error',
+          title: 'You need to Login!'
+        })
+        this.$router.push({ path: 'login' });
       })
   }
 }

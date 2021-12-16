@@ -216,4 +216,28 @@ class RouteControl extends Controller
         $note->save();
         return 'Saved';
     }
+
+    public function addCat(Request $req){
+        $user = JWTAuth::parseToken()->authenticate();
+        $acc = Account::where('userid','=',$user->id)->first();
+        $cats = $acc->cats;
+        if($cats == null){
+            $cnt = 0;
+            $cats = [];
+        }
+        else{
+            $cats = json_decode($cats);
+            $en = end($cats);
+            $cnt = $en->cid;
+        }
+        $catname = e($req->catName);
+        $carr = [
+            'cid' => ++$cnt,
+            'cat' => $catname,
+        ];
+        array_push($cats,$carr);
+        $acc->cats = json_encode($cats,false);
+        $acc->save();
+        return 'Cat Saved!';
+    }
 }

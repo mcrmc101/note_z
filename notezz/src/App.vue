@@ -14,9 +14,25 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
 import NBar from './components/NBar.vue'
 export default {
-  components: { NBar }
+  components: { NBar },
+  created () {
+    axios.get('http://localhost/note_z/notez/checkUser', {
+      headers: {
+        Authorization: `Bearer ${this.$store.state.usertoken}`
+      }
+    })
+      .catch((error) => {
+        console.log(error)
+        this.flashMessage.show({
+          status: 'error',
+          title: 'Not Authorized!'
+        })
+        this.$router.push({ path: '/' });
+      })
+  }
 }
 </script>
 
@@ -26,6 +42,13 @@ export default {
 }
 b-row {
   padding: 2%;
+}
+.padme {
+  padding: 5%;
+}
+.phatme {
+  font-weight: 900;
+  text-decoration: underline;
 }
 #app {
   font-family: "Courier New", Courier, monospace;

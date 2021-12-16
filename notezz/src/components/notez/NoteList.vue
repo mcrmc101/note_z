@@ -23,20 +23,28 @@
         <br>
       </b-card>
     </b-row>
-    <br>
-    <b-row align-h="center">
-      <b-table
-        hover
-        sticky-header
-        small
-        bordered
-        :items="items"
-        selectable
-        @row-selected="getSelected($event)"
-        select-mode="single"
-        style="width:90%"
-      ></b-table>
 
+    <b-row
+      align-h="center"
+      class="padme"
+    >
+      <b-form-group
+        label="All Notes"
+        label-for="notetable"
+      >
+        <b-table
+          hover
+          sticky-header
+          small
+          bordered
+          :items="items"
+          selectable
+          @row-selected="getSelected($event)"
+          select-mode="single"
+          style="width:95%"
+          id="notetable"
+        ></b-table>
+      </b-form-group>
     </b-row>
   </div>
 </template>
@@ -87,6 +95,11 @@ export default {
         })
         .catch((error) => {
           console.log(error)
+          this.flashMessage.show({
+            status: 'error',
+            title: 'Not Authorized!'
+          })
+          this.$router.push({ path: 'login' });
 
         })
     }

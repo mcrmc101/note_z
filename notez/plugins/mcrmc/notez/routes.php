@@ -11,11 +11,5 @@ Route::get('/checkUser', 'Mcrmc\Notez\Controllers\RouteControl@getAuthenticatedU
 Route::post('/getSelectedNote', 'Mcrmc\Notez\Controllers\RouteControl@getSelectedNote');
 Route::post('/saveNote', 'Mcrmc\Notez\Controllers\RouteControl@saveNote');
 Route::post('/testSave', 'Mcrmc\Notez\Controllers\RouteControl@testSave');
-Route::get('test',function(){
-    return 'Testing Routes';
-});
 
-Route::get('acc',function(){
-    return Account::all();
-});
 

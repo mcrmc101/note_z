@@ -25,6 +25,17 @@
         <image-note v-if="isImageNote"></image-note>
         <text-note v-if="isTextNote"></text-note>
       </b-row>
+      <br>
+      <b-row
+        align-h="center"
+        align-v="end"
+      >
+        <b-button
+          @click.prevent="showAddCat"
+          v-if="!isShowAddCat"
+        >Add Category</b-button>
+        <add-category v-if="isShowAddCat"></add-category>
+      </b-row>
     </b-container>
     <b-row>
 
@@ -35,19 +46,22 @@
   </div>
 </template>
 <script>
+import AddCategory from '../components/notez/AddCategory.vue'
 import AudioNote from '../components/notez/AudioNote.vue'
 import ImageNote from '../components/notez/ImageNote.vue'
 import TextNote from '../components/notez/TextNote.vue'
 
+
 export default {
-  components: { AudioNote, ImageNote, TextNote },
+  components: { AudioNote, ImageNote, TextNote, AddCategory },
   name: 'NewNote',
   data () {
     return {
       note: '',
       isAudioNote: false,
       isImageNote: false,
-      isTextNote: false
+      isTextNote: false,
+      isShowAddCat: false
     }
   },
   methods: {
@@ -79,6 +93,14 @@ export default {
       }
       else {
         this.isTextNote = false
+      }
+    },
+    showAddCat: function () {
+      if (this.isShowAddCat === false) {
+        this.isShowAddCat = true
+      }
+      else {
+        this.isShowAddCat = false
       }
     }
   }

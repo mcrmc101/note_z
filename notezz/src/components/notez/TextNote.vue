@@ -1,25 +1,27 @@
 <template>
   <div>
-    <b-form @submit.prevent="saveTextNote($event)">
-      <b-form-group>
-        <select-category></select-category>
-      </b-form-group>
-      <b-form-group>
-        <b-form-textarea
-          id="textarea"
-          v-model="textNote"
-          placeholder="Enter something..."
-          rows="3"
-          max-rows="6"
-        ></b-form-textarea>
-      </b-form-group>
-      <b-form-group>
-        <b-button
-          type="submit"
-          variant="success"
-        >Save</b-button>
-      </b-form-group>
-    </b-form>
+    <b-card title="Add Text Note">
+      <b-form @submit.prevent="saveTextNote($event)">
+        <b-form-group>
+          <select-category></select-category>
+        </b-form-group>
+        <b-form-group>
+          <b-form-textarea
+            id="textarea"
+            v-model="textNote"
+            placeholder="Enter something..."
+            rows="3"
+            max-rows="6"
+          ></b-form-textarea>
+        </b-form-group>
+        <b-form-group>
+          <b-button
+            type="submit"
+            variant="success"
+          >Save</b-button>
+        </b-form-group>
+      </b-form>
+    </b-card>
   </div>
 </template>
 <script>

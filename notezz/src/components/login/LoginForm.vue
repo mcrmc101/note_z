@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-button @click.prevent="checkUser()">Check User</b-button>
+    <!--<b-button @click.prevent="checkUser()">Check User</b-button>-->
+    <h4>Login</h4>
     <br>
     <b-form @submit.prevent="loginUser()">
       <b-form-group
